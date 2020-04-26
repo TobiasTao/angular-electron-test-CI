@@ -21,10 +21,13 @@
         "!tslint.json"
     ],
   "win": {
-    "icon": "dist/assets/icons",
+    "icon": "dist\\assets\\images\\favicon.256x256.png",
     "target": [
-      "msi", "nsis"
+      "nsis"
     ]
+  },
+  "nsis": {
+    "artifactName": "${productName}-${version}-setup.${ext}"
   },
   "mac": {
     "icon": "dist/assets/icons",

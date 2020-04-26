@@ -26,8 +26,14 @@ jobs:
         run: |
           npm install
           npm run electron:windows
-        
-      - uses: actions/upload-artifact@v1
+
+      - name: Package artifacts
+          run: |
+            mkdir artifact-setup
+            mv dist/*-setup.exe artifact-setup/
+
+      - uses: actions/upload-artifact@master
+        name: Upload installer
         with:
-          name: win-artifact
-          path: release/angular-electron 7.0.5.msi
+         name: Installer
+         path: artifact-setup
