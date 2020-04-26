@@ -30,4 +30,4 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: win-artifact
-          path: release/
+          path: release/angular-electron 7.0.5.msi
