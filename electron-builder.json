@@ -11,6 +11,7 @@
         "!package.json",
         "!package-lock.json",
         "!src/",
+        "src/electron",
         "!e2e/",
         "!hooks/",
         "!angular.json",
