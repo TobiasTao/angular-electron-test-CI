@@ -26,5 +26,8 @@ jobs:
         run: |
           npm install
           npm run electron:windows
-          cd ./release
-          tree
+        
+      - uses: actions/upload-artifact@v1
+        with:
+          name: win-artifact
+          path: release/
