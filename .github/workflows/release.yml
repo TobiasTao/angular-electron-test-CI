@@ -131,16 +131,8 @@ jobs:
           mv Linux/* Assets/
           mv MacOS/* Assets/
 
-
       - name: Checkout
         uses: actions/checkout@v2
-
-      - name: Get version
-        shell: bash
-        run: |
-          echo $APP_VERSION
-          $APP_VERSION = ${PUSH_TAG:11}
-          echo $APP_VERSION
 
       #  For more information, see https://github.com/marketplace/actions/gh-release
       - name: Release
@@ -154,6 +146,8 @@ jobs:
           ALLOW_TAG_PREFIX: "true"
         with:
           args: |
-            Windows/angular-electron-1.1.5-setup.exe
-            Linux/angular-electron-1.1.5-macos.exe
-            MacOS/angular-electron-1.1.5-linux.exe
+            Windows/angular-electron-7.0.5-setup.exe
+            Linux/angular-electron-7.0.5-macos.dmg
+            Linux/angular-electron-7.0.5-macos.pkg
+            MacOS/angular-electron-7.0.5-linux.deb
+            MacOS/angular-electron-7.0.5-linux.tar.gz
