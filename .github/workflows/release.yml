@@ -2,8 +2,6 @@ name: Build/release
 
 on:
   push:
-    tags:
-      - 'v*.*.*'
 
 jobs:
   build_windows:
@@ -146,8 +144,8 @@ jobs:
           ALLOW_TAG_PREFIX: "true"
         with:
           args: |
-            Windows/angular-electron-7.0.5-setup.exe
-            Linux/angular-electron-7.0.5-macos.dmg
-            Linux/angular-electron-7.0.5-macos.pkg
-            MacOS/angular-electron-7.0.5-linux.deb
-            MacOS/angular-electron-7.0.5-linux.tar.gz
+            Assets/angular-electron-7.0.5-setup.exe
+            Assets/angular-electron-7.0.5-macos.dmg
+            Assets/angular-electron-7.0.5-macos.pkg
+            Assets/angular-electron-7.0.5-linux.deb
+            Assets/angular-electron-7.0.5-linux.tar.gz
