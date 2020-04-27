@@ -20,8 +20,6 @@ jobs:
         with:
           node-version: 12
           
-      - name: Install Node dependencies
-        run: npm install
 
       - name: Build app
         env:
@@ -29,12 +27,15 @@ jobs:
         shell: pwsh
         run: |
           if($env:RUNNER_OS -eq "Linux") {
+            npm install
             npm run electron:linux
           }
           elseif($env:RUNNER_OS -eq "Windows") {
+            npm install
             npm run electron:windows
           }
           elseif($env:RUNNER_OS -eq "macOS") {
+            npm install
             npm run electron:mac
           }
           
