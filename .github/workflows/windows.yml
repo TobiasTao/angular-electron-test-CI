@@ -19,24 +19,23 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12
-          
-          
-      - name: Install deps
-        run: npm install
         
       - name: Build app on Windows
         if: runner.os == 'Windows'
         run: |
+          npm install
           npm run electron:windows
       
       - name: Build app on Linux
         if: runner.os == 'Linux'
         run: |
+          npm install
           npm run electron:linux
           
       - name: Build app on MacOS
         if: runner.os == 'macOS'
         run: |
+          npm install
           npm run electron:mac
           
       - name: list files
