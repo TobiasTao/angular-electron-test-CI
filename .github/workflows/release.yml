@@ -31,7 +31,7 @@ jobs:
       - uses: actions/upload-artifact@master
         name: Upload installer
         with:
-          name: Installer
+          name: Windwos
           path: artifact-setup
 
 
@@ -56,40 +56,17 @@ jobs:
 
       - name: Package artifacts
         run: |
-          mkdir artifact-deb
-          mv release/*.deb artifact-deb/ || true
-          mkdir artifact-rpm
-          mv release/*.rpm artifact-rpm/ || true
-          mkdir artifact-snap
-          mv release/*.snap artifact-snap/ || true
-          mkdir artifact-tar.gz
-          mv release/*.tar.gz artifact-tar.gz/ || true
+          mkdir artifact-linux
+          mv release/*.deb artifact-linux/ || true
+          mv release/*.rpm artifact-linux/ || true
+          mv release/*.snap artifact-linux/ || true
+          mv release/*.tar.gz artifact-linux.gz/ || true
 
       - uses: actions/upload-artifact@master
-        name: Upload DEB
+        name: Upload linux artifacts
         with:
-          name: Linux .deb
-          path: artifact-deb
-
-      - uses: actions/upload-artifact@master
-        name: Upload RPM
-        with:
-          name: Linux .rpm
-          path: artifact-rpm
-
-      - uses: actions/upload-artifact@master
-        name: Upload Snap
-        with:
-          name: Linux .snap
-          path: artifact-snap
-
-      - uses: actions/upload-artifact@master
-        name: Upload tarball
-        with:
-          name: Linux tarball
-          path: artifact-tar.gz
-
-
+          name: Linux
+          path: artifact-linux
 
 
   build_macos:
@@ -113,23 +90,52 @@ jobs:
 
       - name: Package artifacts
         run: |
-          mkdir artifact-pkg
-          mv release/*.pkg artifact-pkg/
-          mkdir artifact-dmg
-          mv release/*.dmg artifact-dmg/
+          mkdir artifact-macos
+          mv release/*.pkg artifact-macos/
+          mv release/*.dmg artifact-macos/
 
       - uses: actions/upload-artifact@master
-        name: Upload PKG
+        name: Upload macos artifacts
         with:
-          name: macOS .pkg
+          name: MacOS
           path: artifact-pkg
 
-      - uses: actions/upload-artifact@master
-        name: Upload DMG
+
+  release_all:
+
+    runs_on: ubuntu-latest
+    needs: [build_windows, build_linux, build_macos]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - uses: actions/download-artifact@v1
         with:
-          name: macOS .dmg
-          path: artifact-dmg
+          name: Windows
 
+      - uses: actions/download-artifact@v1
+        with:
+          name: Linux
 
+      - uses: actions/download-artifact@v1
+        with:
+          name: MacOS
+
+      #  For more information, see https://github.com/marketplace/actions/gh-release
+      - name: Release
+        uses: docker://antonyurchenko/git-release:latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DRAFT_RELEASE: "false"
+          PRE_RELEASE: "false"
+          CHANGELOG_FILE: "CHANGELOG.md"
+          ALLOW_EMPTY_CHANGELOG: "false"
+          ALLOW_TAG_PREFIX: "true"
+        with:
+          args: |
+            Windows/*
+            Linux/*
+            MacOS/*
 
 
