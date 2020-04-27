@@ -126,7 +126,7 @@ jobs:
         run: |
           mkdir Assets
           mv Windows/* Assets/
-          mv Liunx/* Assets/
+          mv Linux/* Assets/
           mv MacOS/* Assets/
 
 
