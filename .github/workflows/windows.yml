@@ -19,21 +19,37 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12
+          
+      - name: Install Node dependencies
+        run: npm install
 
-      - name: Build Electron app
+      - name: Build app
+        shell: pwsh
+        run: |
+          if($env:RUNNER_OS -eq "Linux") {
+            npm run electron:linux
+          }
+          elseif($env:RUNNER_OS -eq "Windows") {
+            npm run electron:windows
+          }
+          elseif($env:RUNNER_OS -eq "macOS") {
+            npm run electron:mac
+          }
+          
+      - name: list files
+        run: |
+          cd release
+          ls
+
+      - name: Release app
+        uses: docker://antonyurchenko/git-release:latest
         env:
-          GH_TOKEN: ${{ secrets.github_token }}
-        run: |
-          npm install
-          npm run electron:windows
-
-      - name: Package artifacts
-        run: |
-          mkdir artifact-setup
-          mv release/*-setup.exe artifact-setup/
-
-      - uses: actions/upload-artifact@master
-        name: Upload installer
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DRAFT_RELEASE: "false"
+          PRE_RELEASE: "false"
+          ALLOW_EMPTY_CHANGELOG: "true"
+          ALLOW_TAG_PREFIX: "true"
         with:
-         name: Installer
-         path: artifact-setup
+          args: |
+            release/*-setup.exe
+            
