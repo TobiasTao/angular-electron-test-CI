@@ -151,8 +151,8 @@ jobs:
           ALLOW_TAG_PREFIX: "true"
         with:
           args: |
-            Windows/angular-electron-${{ github.ref }}setup.exe
-#            Linux/*
-#            MacOS/*
+            Windows/angular-electron-${{ github.ref }}-setup.exe
+            Linux/angular-electron-${{ github.ref }}-macos.exe
+            MacOS/angular-electron-${{ github.ref }}-linux.exe
 
 
