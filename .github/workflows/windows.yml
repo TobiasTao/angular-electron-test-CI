@@ -34,6 +34,11 @@ jobs:
         run: |
           npm run electron:linux
           
+      - name: Build app on MacOS
+        if: runner.os == 'macOS'
+        run: |
+          npm run electron:mac
+          
       - name: list files
         run: |
           cd release
