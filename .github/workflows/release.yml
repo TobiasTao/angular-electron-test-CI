@@ -98,7 +98,7 @@ jobs:
         name: Upload macos artifacts
         with:
           name: MacOS
-          path: artifact-pkg
+          path: artifact-macos
 
 
   release_all:
