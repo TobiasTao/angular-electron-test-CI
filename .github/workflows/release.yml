@@ -141,8 +141,8 @@ jobs:
           ALLOW_TAG_PREFIX: "true"
         with:
           args: |
-            ../Windows/*
-            ../Linux/*
-            ../MacOS/*
+            Windows/*
+            Linux/*
+            MacOS/*
 
 
