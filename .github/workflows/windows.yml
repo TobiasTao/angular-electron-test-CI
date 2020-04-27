@@ -43,15 +43,15 @@ jobs:
         run: |
           npm install
           npm run electron:mac
-          
-      - name: list files
-        run: |
-          cd release
-          ls
 
-      - name: Upload app
-        uses: actions/upload-artifact@v1
+      - name: Package artifacts
+        run: |
+          mkdir artifact-setup
+          mv release/*-setup.exe artifact-setup/
+          
+      - uses: actions/upload-artifact@master
+        name: Upload installer
         with:
           name: Installer
-          path: release/*-setup.exe
+          path: artifact-setup
             
