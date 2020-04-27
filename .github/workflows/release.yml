@@ -1,0 +1,135 @@
+name: Build/release
+
+on:
+  push
+
+jobs:
+  build_windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v1
+
+      - name: Install Node.js, NPM and Yarn
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Build app on Windows
+        env:
+          GH_TOKEN: ${{ secrets.github_token }}
+        run: |
+          npm install
+          npm run electron:windows
+
+      - name: Package artifacts
+        run: |
+          mkdir artifact-setup
+          mv release/*-setup.exe artifact-setup/
+
+      - uses: actions/upload-artifact@master
+        name: Upload installer
+        with:
+          name: Installer
+          path: artifact-setup
+
+
+  build_linux:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v1
+
+      - name: Install Node.js, NPM and Yarn
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Build app on Linux
+        env:
+          GH_TOKEN: ${{ secrets.github_token }}
+        run: |
+          npm install
+          npm run electron:linux
+
+      - name: Package artifacts
+        run: |
+          mkdir artifact-deb
+          mv release/*.deb artifact-deb/ || true
+          mkdir artifact-rpm
+          mv release/*.rpm artifact-rpm/ || true
+          mkdir artifact-snap
+          mv release/*.snap artifact-snap/ || true
+          mkdir artifact-tar.gz
+          mv release/*.tar.gz artifact-tar.gz/ || true
+
+      - uses: actions/upload-artifact@master
+        name: Upload DEB
+        with:
+          name: Linux .deb
+          path: artifact-deb
+
+      - uses: actions/upload-artifact@master
+        name: Upload RPM
+        with:
+          name: Linux .rpm
+          path: artifact-rpm
+
+      - uses: actions/upload-artifact@master
+        name: Upload Snap
+        with:
+          name: Linux .snap
+          path: artifact-snap
+
+      - uses: actions/upload-artifact@master
+        name: Upload tarball
+        with:
+          name: Linux tarball
+          path: artifact-tar.gz
+
+
+
+
+  build_macos:
+    runs-on: macOS-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v1
+
+      - name: Install Node.js, NPM and Yarn
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Build app on macOS
+        env:
+          GH_TOKEN: ${{ secrets.github_token }}
+        run: |
+          npm install
+          npm run electron:mac
+
+      - name: Package artifacts
+        run: |
+          mkdir artifact-pkg
+          mv release/*.pkg artifact-pkg/
+          mkdir artifact-zip
+          mv release/*.zip artifact-zip/
+
+      - uses: actions/upload-artifact@master
+        name: Upload PKG
+        with:
+          name: macOS .pkg
+          path: artifact-pkg
+
+      - uses: actions/upload-artifact@master
+        name: Upload ZIP
+        with:
+          name: macOS .zip
+          path: artifact-zip
+
+
+
+
