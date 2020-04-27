@@ -21,12 +21,16 @@ jobs:
           node-version: 12
         
       - name: Build app on Windows
+        env:
+          GH_TOKEN: ${{ secrets.github_token }}
         if: runner.os == 'Windows'
         run: |
           npm install
           npm run electron:windows
       
       - name: Build app on Linux
+        env:
+          GH_TOKEN: ${{ secrets.github_token }}
         if: runner.os == 'Linux'
         run: |
           npm install
@@ -34,6 +38,8 @@ jobs:
           
       - name: Build app on MacOS
         if: runner.os == 'macOS'
+        env:
+          GH_TOKEN: ${{ secrets.github_token }}
         run: |
           npm install
           npm run electron:mac
