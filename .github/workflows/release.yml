@@ -121,12 +121,13 @@ jobs:
         with:
           name: MacOS
 
-      - shell: bash
-          run: |
-            mkdir Assets
-            mv Windows/* Assets/
-            mv Liunx/* Assets/
-            mv MacOS/* Assets/
+      - name: Collect assets
+        shell: bash
+        run: |
+          mkdir Assets
+          mv Windows/* Assets/
+          mv Liunx/* Assets/
+          mv MacOS/* Assets/
 
 
       - name: Checkout
