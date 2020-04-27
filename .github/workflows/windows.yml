@@ -49,15 +49,9 @@ jobs:
           cd release
           ls
 
-      - name: Git Release
-        uses: anton-yurchenko/git-release@v3.1.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DRAFT_RELEASE: "false"
-          PRE_RELEASE: "false"
-          ALLOW_EMPTY_CHANGELOG: "true"
-          ALLOW_TAG_PREFIX: "true"
+      - name: Upload app
+        uses: actions/upload-artifact@v1
         with:
-          args: |
-            release/*-setup.exe
+          name: Installer
+          path: release/*-setup.exe
             
