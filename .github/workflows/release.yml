@@ -110,15 +110,13 @@ jobs:
         run: |
           npm install
           npm run electron:mac
-          cd release
-          ls
 
       - name: Package artifacts
         run: |
           mkdir artifact-pkg
           mv release/*.pkg artifact-pkg/
-          mkdir artifact-zip
-          mv release/*.zip artifact-zip/
+          mkdir artifact-dmg
+          mv release/*.dmg artifact-zip/
 
       - uses: actions/upload-artifact@master
         name: Upload PKG
@@ -127,10 +125,10 @@ jobs:
           path: artifact-pkg
 
       - uses: actions/upload-artifact@master
-        name: Upload ZIP
+        name: Upload DMG
         with:
-          name: macOS .zip
-          path: artifact-zip
+          name: macOS .dmg
+          path: artifact-dmg
 
 
 
