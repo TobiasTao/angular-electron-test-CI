@@ -124,9 +124,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-
       - name: list file
-        run: ls /github/workspace/Windows
+        env:
+          APP_VERSION: ${{ github.ref }}
+        run: |
+          echo $APP_VERSION
+          ls /github/workspace/Windows
 
       #  For more information, see https://github.com/marketplace/actions/gh-release
       - name: Release
@@ -138,8 +141,6 @@ jobs:
           CHANGELOG_FILE: "CHANGELOG.md"
           ALLOW_EMPTY_CHANGELOG: "false"
           ALLOW_TAG_PREFIX: "true"
-          APP_VERSION: ${{ github.ref }}
-        run: echo $APP_VERSION
         with:
           args: |
             Windows/angular-electron-7.0.5-setup.exe
