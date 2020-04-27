@@ -2,6 +2,8 @@ name: Build/release
 
 on:
   push:
+    tags:
+      - 'v*'
 
 jobs:
   build_windows:
@@ -106,8 +108,6 @@ jobs:
     needs: [build_windows, build_linux, build_macos]
 
     steps:
-      - name: list file
-        run: ls
 
       - uses: actions/download-artifact@v1
         with:
@@ -121,15 +121,22 @@ jobs:
         with:
           name: MacOS
 
+      - shell: bash
+          run: |
+            mkdir Assets
+            mv Windows/* Assets/
+            mv Liunx/* Assets/
+            mv MacOS/* Assets/
+
+
       - name: Checkout
         uses: actions/checkout@v2
 
       - name: list file
         env:
           APP_VERSION: ${{ github.ref }}
-        run: |
-          echo $APP_VERSION
-          ls /github/workspace
+          LAST_NAME: Octocat
+        run: echo $APP_VERSION
 
       #  For more information, see https://github.com/marketplace/actions/gh-release
       - name: Release
