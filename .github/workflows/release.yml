@@ -109,9 +109,6 @@ jobs:
       - name: list file
         run: ls
 
-      - name: Checkout
-        uses: actions/checkout@v2
-
       - uses: actions/download-artifact@v1
         with:
           name: Windows
@@ -123,6 +120,11 @@ jobs:
       - uses: actions/download-artifact@v1
         with:
           name: MacOS
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+
 
       - name: list file
         run: ls
