@@ -1,7 +1,9 @@
 name: Build/release
 
 on:
-  push
+  push:
+    tags:
+      - 'v*.*.*'
 
 jobs:
   build_windows:
@@ -127,7 +129,6 @@ jobs:
 
 
       - name: list file
-        run: ls
 
       #  For more information, see https://github.com/marketplace/actions/gh-release
       - name: Release
@@ -139,6 +140,8 @@ jobs:
           CHANGELOG_FILE: "CHANGELOG.md"
           ALLOW_EMPTY_CHANGELOG: "false"
           ALLOW_TAG_PREFIX: "true"
+          APP_VERSION: ${{ github.ref }}
+        run: echo $APP_VERSION
         with:
           args: |
             Windows/angular-electron-7.0.5-setup.exe
