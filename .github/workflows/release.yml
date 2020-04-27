@@ -102,7 +102,6 @@ jobs:
 
 
   release_all:
-
     runs_on: ubuntu-latest
     needs: [build_windows, build_linux, build_macos]
 
