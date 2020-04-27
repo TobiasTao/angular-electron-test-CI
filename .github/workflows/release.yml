@@ -106,9 +106,10 @@ jobs:
   release_all:
     runs-on: ubuntu-latest
     needs: [build_windows, build_linux, build_macos]
+    env:
+      APP_VERSION: ${{ github.ref }}
 
     steps:
-
       - uses: actions/download-artifact@v1
         with:
           name: Windows
@@ -133,11 +134,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: list file
-        env:
-          APP_VERSION: ${{ github.ref }}
-          LAST_NAME: Octocat
-        run: echo $APP_VERSION
+      - name: Get version
+        shell: bash
+        run: |
+          APP_VERSION = ${APP_VERSION:11}
 
       #  For more information, see https://github.com/marketplace/actions/gh-release
       - name: Release
