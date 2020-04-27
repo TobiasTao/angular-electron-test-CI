@@ -141,8 +141,8 @@ jobs:
           ALLOW_TAG_PREFIX: "true"
         with:
           args: |
-            Windows/*
-            Linux/*
-            MacOS/*
+            Windows/angular-electron-7.0.5-setup.exe
+#            Linux/*
+#            MacOS/*
 
 
