@@ -138,7 +138,9 @@ jobs:
       - name: Get version
         shell: bash
         run: |
+          echo $APP_VERSION
           $APP_VERSION = ${PUSH_TAG:11}
+          echo $APP_VERSION
 
       #  For more information, see https://github.com/marketplace/actions/gh-release
       - name: Release
@@ -152,8 +154,8 @@ jobs:
           ALLOW_TAG_PREFIX: "true"
         with:
           args: |
-            Windows/angular-electron-${{ github.ref }}-setup.exe
-            Linux/angular-electron-${{ github.ref }}-macos.exe
-            MacOS/angular-electron-${{ github.ref }}-linux.exe
+            Windows/angular-electron-${{APP_VERSION }}-setup.exe
+            Linux/angular-electron-${{ APP_VERSION }}-macos.exe
+            MacOS/angular-electron-${{APP_VERSION }}-linux.exe
 
 
