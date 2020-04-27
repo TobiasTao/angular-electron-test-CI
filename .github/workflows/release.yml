@@ -110,6 +110,8 @@ jobs:
         run: |
           npm install
           npm run electron:mac
+          cd release
+          ls
 
       - name: Package artifacts
         run: |

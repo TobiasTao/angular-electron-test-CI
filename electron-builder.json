@@ -30,15 +30,17 @@
     "artifactName": "${productName}-${version}-setup.${ext}"
   },
   "mac": {
-    "icon": "dist/assets/icons",
+    "icon": "dist\\assets\\images\\favicon.256x256.png",
+    "artifactName": "${productName}-${version}-macos.${ext}",
     "target": [
-      "dmg"
+      "dmg", "pkg"
     ]
   },
   "linux": {
-    "icon": "dist/assets/icons",
+    "icon": "dist\\assets\\images\\favicon.256x256.png",
+    "artifactName": "${productName}-${version}-linux.${ext}",
     "target": [
-      "AppImage"
+      "snap", "deb", "rpm", "tar.gz"
     ]
   }
 }
