@@ -40,7 +40,7 @@
     "icon": "dist\\assets\\images\\favicon.256x256.png",
     "artifactName": "${productName}-${version}-linux.${ext}",
     "target": [
-      "snap", "deb", "rpm", "tar.gz"
+      "deb", "tar.gz"
     ]
   }
 }
