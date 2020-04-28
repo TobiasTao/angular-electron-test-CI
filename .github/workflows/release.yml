@@ -120,7 +120,10 @@ jobs:
           name: MacOS
 
       - name: list
-        run: ls Windows/
+        run: |
+          ls
+          pwd
+#          '/github/workspace/Windows/angular-electron-7.0.5-setup.exe.blockmap
 
       - name: Checkout
         uses: actions/checkout@v2
