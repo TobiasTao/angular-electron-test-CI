@@ -2,6 +2,8 @@ name: Build/release
 
 on:
   push:
+    tags:
+      - 'v*'
 
 jobs:
   build_windows:
@@ -102,9 +104,6 @@ jobs:
     needs: [build_windows, build_linux, build_macos]
 
     steps:
-
-#          '/github/workspace/Windows/angular-electron-7.0.5-setup.exe.blockmap
-
       - name: Checkout
         uses: actions/checkout@v2
 
