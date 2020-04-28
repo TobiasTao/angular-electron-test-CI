@@ -2,6 +2,8 @@ name: Build-win
 
 on:
   push:
+    tags:
+      - 'v*'
 
 jobs:
   build_windows:

@@ -123,6 +123,10 @@ jobs:
         run: |
           ls
           pwd
+          mkdir artifacts
+          mv Windows/* artifacts
+          mv Linux/* artifacts
+          mv MacOS/* artifacts
 #          '/github/workspace/Windows/angular-electron-7.0.5-setup.exe.blockmap
 
       - name: Checkout
