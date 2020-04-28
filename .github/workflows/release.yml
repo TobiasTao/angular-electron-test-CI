@@ -143,9 +143,9 @@ jobs:
           APP_VERSION: 7.0.5
         with:
           args: |
-            Windows/angular-electron-7.0.5-setup.exe.blockmap
-            Windows/angular-electron-7.0.5-setup.exe
-            MacOS/angular-electron-7.0.5-macos.dmg
-            MacOS/angular-electron-7.0.5-macos.pkg
-            Linux/angular-electron-7.0.5-linux.deb
-            Linux/angular-electron-7.0.5-linux.tar.gz
+            /github/workspace/Windows/angular-electron-7.0.5-setup.exe.blockmap
+            /github/workspace/Windows/angular-electron-7.0.5-setup.exe
+            /github/workspace/MacOS/angular-electron-7.0.5-macos.dmg
+            /github/workspace/MacOS/angular-electron-7.0.5-macos.pkg
+            /github/workspace/Linux/angular-electron-7.0.5-linux.deb
+            /github/workspace/Linux/angular-electron-7.0.5-linux.tar.gz
