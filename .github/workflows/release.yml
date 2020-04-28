@@ -106,6 +106,12 @@ jobs:
     needs: [build_windows, build_linux, build_macos]
 
     steps:
+
+#          '/github/workspace/Windows/angular-electron-7.0.5-setup.exe.blockmap
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - uses: actions/download-artifact@v1
         name: Download windows artifact
         with:
@@ -119,23 +125,20 @@ jobs:
         with:
           name: MacOS
 
-      - name: list
-        run: |
-          ls
-          pwd
-          mkdir artifacts
-          mv Windows/* artifacts
-          mv Linux/* artifacts
-          mv MacOS/* artifacts
-#          '/github/workspace/Windows/angular-electron-7.0.5-setup.exe.blockmap
-
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: list
-        run: |
-          ls
-          pwd
+#      - name: list
+#        run: |
+#          ls
+#          pwd
+#          mkdir artifacts
+#          mv Windows/* artifacts
+#          mv Linux/* artifacts
+#          mv MacOS/* artifacts
+#          ls
+#
+#      - name: list
+#        run: |
+#          ls
+#          pwd
 
       #  For more information, see https://github.com/marketplace/actions/gh-release
       - name: Release
