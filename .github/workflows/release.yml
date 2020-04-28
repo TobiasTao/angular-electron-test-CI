@@ -121,7 +121,6 @@ jobs:
         with:
           name: MacOS
 
-      #  For more information, see https://github.com/marketplace/actions/gh-Krelease
       - name: Release
         uses: docker://antonyurchenko/git-release:latest
         env:
