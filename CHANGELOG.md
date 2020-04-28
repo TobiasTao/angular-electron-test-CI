@@ -1,4 +1,4 @@
-## [2.2]
+## [2.3] - 2019-12-21 
 ### Added
 - Feature A
 - Feature B
