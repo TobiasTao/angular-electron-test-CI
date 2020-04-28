@@ -125,6 +125,7 @@ jobs:
         shell: bash
         run: |
           mkdir Assets
+          ls Windows/
           mv Windows/* Assets/
           mv Linux/* Assets/
           mv MacOS/* Assets/
@@ -142,10 +143,11 @@ jobs:
           CHANGELOG_FILE: "CHANGELOG.md"
           ALLOW_EMPTY_CHANGELOG: "false"
           ALLOW_TAG_PREFIX: "true"
+          APP_VERSION: 7.0.5
         with:
           args: |
-            Assets/angular-electron-7.0.5-setup.exe
-            Assets/angular-electron-7.0.5-macos.dmg
-            Assets/angular-electron-7.0.5-macos.pkg
-            Assets/angular-electron-7.0.5-linux.deb
-            Assets/angular-electron-7.0.5-linux.tar.gz
+            Assets/angular-electron-${{APP_VERSION}}-setup.exe
+            Assets/angular-electron-${{APP_VERSION}}-macos.dmg
+            Assets/angular-electron-${{APP_VERSION}}-macos.pkg
+            Assets/angular-electron-${{APP_VERSION}}-linux.deb
+            Assets/angular-electron-${{APP_VERSION}}-linux.tar.gz
