@@ -28,8 +28,13 @@ jobs:
           mkdir artifact-setup
           mv release/*-setup.exe* artifact-setup/
 
-      - uses: actions/upload-artifact@master
-        name: Upload installer
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v1-release
         with:
-          name: Windows
-          path: artifact-setup
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: release/*-setup.exe*
+        tag: ${{ github.ref }}
+        overwrite: true
+        file_glob: true
+
+
