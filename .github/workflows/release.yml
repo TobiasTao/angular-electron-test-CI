@@ -120,18 +120,24 @@ jobs:
         with:
           name: MacOS
 
-      - name: Release
-        uses: docker://antonyurchenko/git-release:latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DRAFT_RELEASE: "false"
-          PRE_RELEASE: "false"
-          CHANGELOG_FILE: "CHANGELOG.md"
-          ALLOW_EMPTY_CHANGELOG: "false"
-          ALLOW_TAG_PREFIX: "true"
+      - uses: ncipollo/release-action@v1
         with:
-          args: |
-            Windows/angular-electron-7.0.5-setup.exe.blockmap
-            Windows/angular-electron-7.0.5-setup.exe
-            MacOS/angular-electron-7.0.5-macos.pkg
-            Linux/angular-electron-7.0.5-linux.deb
+          artifacts: "Linux/*,Windows/*,MacOS/*"
+          bodyFile: "CHANGELOG.md"
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+#      - name: Release
+#        uses: docker://antonyurchenko/git-release:latest
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          DRAFT_RELEASE: "false"
+#          PRE_RELEASE: "false"
+#          CHANGELOG_FILE: "CHANGELOG.md"
+#          ALLOW_EMPTY_CHANGELOG: "false"
+#          ALLOW_TAG_PREFIX: "true"
+#        with:
+#          args: |
+#            Windows/angular-electron-7.0.5-setup.exe.blockmap
+#            Windows/angular-electron-7.0.5-setup.exe
+#            MacOS/angular-electron-7.0.5-macos.pkg
+#            Linux/angular-electron-7.0.5-linux.deb
