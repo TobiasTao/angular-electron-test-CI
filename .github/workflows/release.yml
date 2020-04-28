@@ -57,10 +57,7 @@ jobs:
       - name: Package artifacts
         run: |
           mkdir artifact-linux
-          mv release/*.deb artifact-linux/ || true
-          mv release/*.rpm artifact-linux/ || true
-          mv release/*.snap artifact-linux/ || true
-          mv release/*.tar.gz artifact-linux.gz/ || true
+          mv release/*.deb artifact-linux/
 
       - uses: actions/upload-artifact@master
         name: Upload linux artifacts
@@ -92,7 +89,6 @@ jobs:
         run: |
           mkdir artifact-macos
           mv release/*.pkg artifact-macos/
-          mv release/*.dmg artifact-macos/
 
       - uses: actions/upload-artifact@master
         name: Upload macos artifacts
