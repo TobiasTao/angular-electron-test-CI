@@ -106,7 +106,6 @@ jobs:
     needs: [build_windows, build_linux, build_macos]
     env:
       PUSH_TAG: ${{ github.ref }}
-      APP_VERSION: ${{ github.ref }}
 
     steps:
       - uses: actions/download-artifact@v1
@@ -125,6 +124,7 @@ jobs:
         shell: bash
         run: |
           mkdir Assets
+          echo $PUSH_TAG
           ls Windows/
           mv Windows/* Assets/
           mv Linux/* Assets/
@@ -146,8 +146,8 @@ jobs:
           APP_VERSION: 7.0.5
         with:
           args: |
-            Assets/angular-electron-${{APP_VERSION}}-setup.exe
-            Assets/angular-electron-${{APP_VERSION}}-macos.dmg
-            Assets/angular-electron-${{APP_VERSION}}-macos.pkg
-            Assets/angular-electron-${{APP_VERSION}}-linux.deb
-            Assets/angular-electron-${{APP_VERSION}}-linux.tar.gz
+            Assets/angular-electron-${{github.ref}}-setup.exe
+            Assets/angular-electron-${{github.ref}}-macos.dmg
+            Assets/angular-electron-${{github.ref}}-macos.pkg
+            Assets/angular-electron-${{github.ref}}-linux.deb
+            Assets/angular-electron-${{github.ref}}-linux.tar.gz
