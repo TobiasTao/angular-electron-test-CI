@@ -1,4 +1,4 @@
-## [2.3] - 2019-12-21 
+## [2.4] - 2019-12-21 
 ### Added
 - Feature A
 - Feature B
@@ -7,7 +7,6 @@
 
 
 ## <small>7.0.5 (2020-04-26)</small>
-
 * Upgrade Angular 9.1.3 & Electron 8.2.3 ([00b9d43](https://github.com/maximegris/angular-electron/commit/00b9d43))
 
 
