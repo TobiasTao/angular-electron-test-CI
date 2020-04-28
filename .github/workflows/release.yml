@@ -125,22 +125,7 @@ jobs:
         with:
           name: MacOS
 
-#      - name: list
-#        run: |
-#          ls
-#          pwd
-#          mkdir artifacts
-#          mv Windows/* artifacts
-#          mv Linux/* artifacts
-#          mv MacOS/* artifacts
-#          ls
-#
-#      - name: list
-#        run: |
-#          ls
-#          pwd
-
-      #  For more information, see https://github.com/marketplace/actions/gh-release
+      #  For more information, see https://github.com/marketplace/actions/gh-Krelease
       - name: Release
         uses: docker://antonyurchenko/git-release:latest
         env:
@@ -150,12 +135,9 @@ jobs:
           CHANGELOG_FILE: "CHANGELOG.md"
           ALLOW_EMPTY_CHANGELOG: "false"
           ALLOW_TAG_PREFIX: "true"
-          APP_VERSION: 7.0.5
         with:
           args: |
             Windows/angular-electron-7.0.5-setup.exe.blockmap
             Windows/angular-electron-7.0.5-setup.exe
-            MacOS/angular-electron-7.0.5-macos.dmg
             MacOS/angular-electron-7.0.5-macos.pkg
             Linux/angular-electron-7.0.5-linux.deb
-            Linux/angular-electron-7.0.5-linux.tar.gz
