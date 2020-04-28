@@ -119,6 +119,9 @@ jobs:
         with:
           name: MacOS
 
+      - name: list
+        run: ls Windows/
+
       - name: Checkout
         uses: actions/checkout@v2
 
